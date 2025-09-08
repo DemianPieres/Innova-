@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - MMDR</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/ogl@0.0.100/dist/ogl.umd.js"></script>
+</head>
+<body>
+    <!-- Header Section -->
+    <header>
+        <!-- Top Banner -->
+        <div class="top-banner">
+            <div class="container">
+                <div class="banner-content">
+                    <span class="promo-text">Iniciando Sesion Podes Acceder a Promociones Unicas!! - OFF 50%!</span>
+                    <a href="signup.html" class="create-account-link">Crear Cuenta</a>
+                </div>
+                <div class="language-selector">
+                    <span>Español</span>
+                    <span class="arrow">▼</span>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Main Navigation -->
+        <nav class="main-nav">
+            <div class="container">
+                <div class="nav-brand">
+                    <h1>Login</h1>
+                </div>
+                <ul class="nav-links">
+                    <li><a href="#">Inicio</a></li>
+                    <li><a href="#">Contacto</a></li>
+                    <li><a href="#">Mas</a></li>
+                    <li><a href="#" class="active">Login</a></li>
+                </ul>
+                <div class="search-bar">
+                    <input type="text" placeholder="Que Estas Buscando?" class="search-input">
+                    <span class="search-icon">🔍</span>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <!-- Dark Veil Background Animation -->
+        <div class="dark-veil-container">
+            <canvas id="dark-veil-canvas" class="dark-veil-canvas"></canvas>
+        </div>
+        <div class="container">
+            <div class="content-wrapper">
+                <!-- Left Column - Logo/Image -->
+                <div class="left-column">
+                    <div class="logo-container">
+                        <div class="car-outline">
+                            <svg viewBox="0 0 200 100" class="car-svg">
+                                <path d="M20 60 L20 40 Q20 20 40 20 L160 20 Q180 20 180 40 L180 60 Q180 80 160 80 L40 80 Q20 80 20 60 Z" 
+                                      fill="none" stroke="#4CAF50" stroke-width="3"/>
+                                <circle cx="50" cy="70" r="8" fill="none" stroke="#4CAF50" stroke-width="2"/>
+                                <circle cx="150" cy="70" r="8" fill="none" stroke="#4CAF50" stroke-width="2"/>
+                            </svg>
+                        </div>
+                        <div class="brand-text">MMDR</div>
+                    </div>
+                </div>
+
+                <!-- Right Column - Login Form -->
+                <div class="right-column">
+                    <div class="form-container">
+                        <h2 class="form-title">Iniciar sesión</h2>
+                        <p class="form-subtitle">Ingrese sus datos a continuación</p>
+                        
+                        <form class="login-form" id="login-form">
+                            <div class="input-group">
+                                <input type="email" id="login-email" placeholder="Email" class="form-input" required>
+                            </div>
+                            <div class="input-group">
+                                <input type="password" id="login-password" placeholder="Contraseña" class="form-input" required>
+                            </div>
+                            
+                            <button type="submit" id="login-submit" class="btn btn-primary">Iniciar sesion</button>
+                            <button type="button" class="btn btn-google">
+                                <span class="google-icon">G</span>
+                                Sign up with Google
+                            </button>
+                            
+                            <div class="form-links">
+                                <span>Olvidaste tu Contraseña?</span>
+                            
+                                <a href="#" class="recover-link">Recuperar Cuenta</a>
+                            </div>
+                            <div class="form-links">
+                            <span>No tenes una Cuenta?</span>
+                                <a href="signup.html" class="recover-link">Crear Cuenta</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <!-- Column 1: Exclusivo -->
+                <div class="footer-column">
+                    <h3>Exclusivo</h3>
+                    <h4>Suscribite</h4>
+                    <p>Obtene 10% off en tu proxima compra</p>
+                    <div class="email-subscription">
+                        <input type="email" placeholder="Ingrese su Email" class="email-input">
+                        <button class="send-btn">✈</button>
+                    </div>
+                </div>
+
+                <!-- Column 2: Support -->
+                <div class="footer-column">
+                    <h3>Support</h3>
+                    <p>111 Bijoy sarani, Dhaka, DH 1515, Bangladesh.</p>
+                    <p>mmdrsupport@gmail.com</p>
+                    <p>+54-3825-419431</p>
+                </div>
+
+                <!-- Column 3: Cuenta -->
+                <div class="footer-column">
+                    <h3>Cuenta</h3>
+                    <ul>
+                        <li><a href="#">Mi Cuenta</a></li>
+                        <li><a href="#">Login / Register</a></li>
+                        <li><a href="#">Cart</a></li>
+                        <li><a href="#">Wishlist</a></li>
+                        <li><a href="#">Shop</a></li>
+                    </ul>
+                </div>
+
+                <!-- Column 4: App Download -->
+                <div class="footer-column">
+                    <h3>Descarga Nuestra App para tu celular!</h3>
+                    <div class="qr-code">
+                        <div class="qr-placeholder">QR Code</div>
+                    </div>
+                    <div class="app-badges">
+                        <div class="app-badge google-play">GET IT ON Google Play</div>
+                        <div class="app-badge app-store">Download on the App Store</div>
+                    </div>
+                    <div class="social-icons">
+                        <span class="social-icon">📘</span>
+                        <span class="social-icon">🐦</span>
+                        <span class="social-icon">📷</span>
+                        <span class="social-icon">💼</span>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <p>Copyright Innova+ 2025. All right reserved</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="scripts.js"></script>
+</body>
+</html>

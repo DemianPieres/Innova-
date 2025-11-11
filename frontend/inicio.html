@@ -1,0 +1,489 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio - Repuestos Automotrices</title>
+    <link rel="stylesheet" href="inicio-styles.css">
+    <link rel="stylesheet" href="carrito-styles.css">
+    <link rel="stylesheet" href="favoritos-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header>
+        <!-- Main Navigation -->
+        <nav class="main-nav">
+            <div class="nav-content">
+                <div class="logo">
+                    <h1>Inicio</h1>
+                </div>
+                <div class="nav-links">
+                    <a href="inicio.html" class="active">Inicio</a>
+                    <a href="productos.html" onclick="window.location.href='productos.html'; return false;">Productos</a>
+                    <a href="#">Contacto</a>
+                    <a href="#">Mas</a>
+                    <a href="Index.html">Iniciar Sesion</a>
+                </div>
+                <div class="nav-actions">
+                    <div class="search-bar">
+                        <input type="text" placeholder="Que Estas Buscando?">
+                        <i class="fas fa-search"></i>
+                    </div>
+                    <div class="favoritos-wrapper" id="favoritos-icon">
+                        <i class="fas fa-heart"></i>
+                        <span class="favoritos-badge" style="display: none;">0</span>
+                    </div>
+                    <div class="carrito-wrapper" id="carrito-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" style="display: none;">0</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <div class="main-container">
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Hero Banner / Carousel -->
+            <section class="hero-banner">
+                <div class="carousel-container">
+                    <!-- Slide 1 - K&N Filters -->
+                    <div class="carousel-slide active" data-slide="0">
+                        <div class="hero-content">
+                            <div class="hero-left">
+                                <div class="kn-logo">
+                                    <div class="kn-text">K&N</div>
+                                    <div class="kn-subtitle">PERFORMANCE FILTERS</div>
+                                </div>
+                                <h2>10% off en filtros K&N</h2>
+                                <p class="hero-description">Mejora el rendimiento de tu motor con filtros de aire de alta calidad</p>
+                                <a href="productos.html" class="animated-button shop-now-btn">
+                                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                    <span class="text">Comprar Ahora</span>
+                                    <span class="circle"></span>
+                                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="hero-right">
+                                <img src="Imagenes/filtrokyn.png" alt="K&N Filter">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 2 - Turbo Kit -->
+                    <div class="carousel-slide" data-slide="1">
+                        <div class="hero-content">
+                            <div class="hero-left">
+                                <div class="promo-badge">
+                                    <span>NUEVO</span>
+                                </div>
+                                <h2>Kit Turbo Performance</h2>
+                                <p class="hero-description">Aumenta la potencia de tu vehículo con nuestro kit turbo 10 piezas T04E</p>
+                                <a href="productos.html" class="animated-button shop-now-btn">
+                                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                    <span class="text">Comprar Ahora</span>
+                                    <span class="circle"></span>
+                                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="hero-right">
+                                <img src="Imagenes/kitf.png" alt="Kit Turbo">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 3 - Suspension Neumatica -->
+                    <div class="carousel-slide" data-slide="2">
+                        <div class="hero-content">
+                            <div class="hero-left">
+                                <div class="promo-badge featured">
+                                    <span>DESTACADO</span>
+                                </div>
+                                <h2>Suspensión Neumática</h2>
+                                <p class="hero-description">Control total con Air Power Control 4 canales para ajuste perfecto</p>
+                                <a href="productos.html" class="animated-button shop-now-btn">
+                                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                    <span class="text">Comprar Ahora</span>
+                                    <span class="circle"></span>
+                                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="hero-right">
+                                <img src="Imagenes/neu.png" alt="Kit Suspensión">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 4 - Espirales -->
+                    <div class="carousel-slide" data-slide="3">
+                        <div class="hero-content">
+                            <div class="hero-left">
+                                <div class="promo-badge">
+                                    <span>CALIDAD</span>
+                                </div>
+                                <h2>Espirales con Refuerzo</h2>
+                                <p class="hero-description">Mejor estabilidad y durabilidad con espirales de alta resistencia</p>
+                                <a href="productos.html" class="animated-button shop-now-btn">
+                                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                    <span class="text">Comprar Ahora</span>
+                                    <span class="circle"></span>
+                                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="hero-right">
+                                <img src="Imagenes/esp.png" alt="Espirales">
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Slide 5 - LED Kit -->
+                    <div class="carousel-slide" data-slide="4">
+                        <div class="hero-content">
+                            <div class="hero-left">
+                                <div class="promo-badge">
+                                    <span>OFERTA</span>
+                                </div>
+                                <h2>Kit LED Proyector</h2>
+                                <p class="hero-description">Iluminación superior con LED H4 de doble proyector y lupa</p>
+                                <a href="productos.html" class="animated-button shop-now-btn">
+                                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                    <span class="text">Comprar Ahora</span>
+                                    <span class="circle"></span>
+                                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                </a>
+                            </div>
+                            <div class="hero-right">
+                                <img src="Imagenes/led.png" alt="Kit LED">
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Navigation Dots -->
+                <div class="pagination-dots">
+                    <span class="dot active" data-dot="0"></span>
+                    <span class="dot" data-dot="1"></span>
+                    <span class="dot" data-dot="2"></span>
+                    <span class="dot" data-dot="3"></span>
+                    <span class="dot" data-dot="4"></span>
+                </div>
+
+                <!-- Navigation Arrows -->
+                <button class="carousel-nav carousel-prev">
+                    <i class="fas fa-chevron-left"></i>
+                </button>
+                <button class="carousel-nav carousel-next">
+                    <i class="fas fa-chevron-right"></i>
+                </button>
+            </section>
+
+            <!-- Most Sold Products -->
+            <section class="most-sold-section">
+                <div class="section-header">
+                    <span class="section-label">Este Mes</span>
+                    <h2>Productos Mas Vendidos</h2>
+                </div>
+                <div class="products-grid">
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Imagenes/cubreasientosuniversal.webp" alt="Cubre Asientos">                              
+                            <div class="product-actions">
+                                <i class="fas fa-heart" data-product-id="cubre-asientos-universal"></i>
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                        <h3>Cubre Asientos Universal</h3>
+                        <div class="price">
+                            <span class="current-price">$25.000</span>
+                            <span class="old-price">$36.000</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="reviews">(65)</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Imagenes/cubrevolanteuniversal.webp" alt="Cubre Volante">
+                            <div class="product-actions">
+                                <i class="fas fa-heart" data-product-id="cubre-volante-universal"></i>
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                        <h3>Cubre Volante Universal</h3>
+                        <div class="price">
+                            <span class="current-price">$16.000</span>
+                            <span class="old-price">$19.600</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="reviews">(65)</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Imagenes/pomoreicing.webp" alt="Pomo Reicing">
+                            <div class="product-actions">
+                                <i class="fas fa-heart" data-product-id="pomo-reicing"></i>
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                        <h3>Pomo Reicing</h3>
+                        <div class="price">
+                            <span class="current-price">$8.000</span>
+                            <span class="old-price">$17.000</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="reviews">(65)</span>
+                        </div>
+                    </div>
+
+                    <div class="product-card">
+                        <div class="product-image">
+                            <img src="Imagenes/VolanteMOMOedicionlimitada.jpg" alt="Volante MOMO">
+                            <div class="product-actions">
+                                <i class="fas fa-heart" data-product-id="volante-momo-edicion-limitada"></i>
+                                <i class="fas fa-eye"></i>
+                            </div>
+                        </div>
+                        <h3>Volante MOMO edicion limitada</h3>
+                        <div class="price">
+                            <span class="current-price">$78.000</span>
+                        </div>
+                        <div class="rating">
+                            <div class="stars">
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                                <i class="fas fa-star"></i>
+                            </div>
+                            <span class="reviews">(65)</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="section-button-container">
+                    <a href="productos.html" class="animated-button view-more-btn">
+                        <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                        </svg>
+                        <span class="text">Ver Más Productos</span>
+                        <span class="circle"></span>
+                        <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                            <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                        </svg>
+                    </a>
+                </div>
+            </section>
+
+            <!-- New Products -->
+            <section class="new-products-section">
+                <div class="section-header">
+                    <span class="section-label">Nuevo</span>
+                    <h2>Productos Nuevos</h2>
+                </div>
+                <div class="new-products-grid">
+                    <div class="new-product-card large">
+                        <img src="Imagenes/kitturbo.jpg" alt="Kit Turbo">
+                        <div class="product-info">
+                            <h3>Kit Turbo</h3>
+                            <p>10 piezas universales T04E T3 T4 Turbo 400HP con Wastegate</p>
+                            <button class="animated-button">
+                                <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                </svg>
+                                <span class="text">Comprar Ahora</span>
+                                <span class="circle"></span>
+                                <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                </svg>
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="new-products-column">
+                        <div class="new-product-card small">
+                            <img src="Imagenes/kitled.jpg" alt="Kit Led">
+                            <div class="product-info">
+                                <h3>Kit Led</h3>
+                                <p>H4 Led Proyector Doble con Lupa</p>
+                                <button class="animated-button">
+                                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                    <span class="text">Comprar Ahora</span>
+                                    <span class="circle"></span>
+                                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="new-product-card small">
+                            <img src="Imagenes/kitsuspensionneumatica.webp" alt="Kit Suspension">
+                            <div class="product-info">
+                                <h3>Kit Suspencion Neumatica</h3>
+                                <p>Air Power Control 4 Canales</p>
+                                <button class="animated-button">
+                                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                    <span class="text">Comprar Ahora</span>
+                                    <span class="circle"></span>
+                                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <div class="new-product-card small">
+                            <img src="Imagenes/espiralesconrefuerzo.jpg" alt="Espirales">
+                            <div class="product-info">
+                                <h3>Espirales con Refuerzo</h3>
+                                <p>"traseros" (consulte su modelo)</p>
+                                <button class="animated-button">
+                                    <svg viewBox="0 0 24 24" class="arr-2" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                    <span class="text">Comprar Ahora</span>
+                                    <span class="circle"></span>
+                                    <svg viewBox="0 0 24 24" class="arr-1" xmlns="http://www.w3.org/2000/svg">
+                                        <path d="M16.1716 10.9999L10.8076 5.63589L12.2218 4.22168L20 11.9999L12.2218 19.778L10.8076 18.3638L16.1716 12.9999H4V10.9999H16.1716Z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Footer Services -->
+<footer class="services-footer">
+    <div class="service-item">
+        <!-- Camión / Envío -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M216 144h-8l-24-72a16 16 0 0 0-15-11H63a16 16 0 0 0-15 11l-24 72h-8a8 8 0 0 0 0 16h16v48a8 8 0 0 0 8 8h32a8 8 0 0 0 8-8v-16h96v16a8 8 0 0 0 8 8h32a8 8 0 0 0 8-8v-48h16a8 8 0 0 0 0-16Z"/>
+        </svg>
+        <p>Envio gratis superando el tope $60.000 en tu compra!!</p>
+    </div>
+    <div class="service-item">
+        <!-- Auricular / Soporte -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 256 256">
+            <path d="M128 24a104 104 0 0 0-104 104v40a16 16 0 0 0 16 16h24v-48H40v-8a88 88 0 0 1 176 0v8h-24v48h24a16 16 0 0 0 16-16v-40A104 104 0 0 0 128 24Z"/>
+        </svg>
+        <p>Nuestro equipo te acesora</p>
+    </div>
+    <div class="service-item">
+        <!-- Escudo con tick / Seguridad -->
+        <svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" fill="currentColor" viewBox="0 0 256 256">
+            <!-- Escudo -->
+            <path d="M128 24L32 64v72c0 66 48 104 96 104s96-38 96-104V64Z" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+            <!-- Tick -->
+            <polyline points="92 128 120 156 164 112" fill="none" stroke="currentColor" stroke-width="16" stroke-linecap="round" stroke-linejoin="round"/>
+        </svg>
+        <p>Garantia de 30 dias valida para todos los productos</p>
+    </div>
+</footer>
+
+    <!-- MINI CARRITO -->
+    <div id="mini-carrito" class="mini-carrito">
+        <div class="mini-carrito-header">
+            <h3>Tu Carrito</h3>
+            <button class="mini-carrito-cerrar" onclick="cerrarMiniCarrito()">✕</button>
+        </div>
+        
+        <div class="mini-carrito-body">
+            <div class="mini-carrito-items">
+                <p class="carrito-vacio">Tu carrito está vacío</p>
+            </div>
+        </div>
+        
+        <div class="mini-carrito-footer">
+            <div class="mini-carrito-subtotal-container">
+                <span>Subtotal:</span>
+                <span class="mini-carrito-subtotal">$0</span>
+            </div>
+            <button class="btn-ver-carrito-completo" onclick="window.location.href='card.html'">
+                Ver Carrito Completo
+            </button>
+            <button class="btn-continuar-comprando" onclick="window.location.href='productos.html'">
+                Continuar Comprando
+            </button>
+        </div>
+    </div>
+
+    <!-- PANEL DE FAVORITOS -->
+    <div id="panel-favoritos" class="panel-favoritos">
+        <div class="favoritos-header">
+            <h3><i class="fas fa-heart"></i> Mis Favoritos</h3>
+            <button class="favoritos-cerrar" onclick="cerrarPanelFavoritos()">✕</button>
+        </div>
+        
+        <div class="favoritos-body">
+            <div id="favoritos-lista">
+                <p class="favoritos-vacio">No tienes productos en favoritos</p>
+            </div>
+        </div>
+        
+        <div class="favoritos-footer">
+            <div class="favoritos-contador">
+                Total: <span id="favoritos-contador">0</span> productos
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts del Carrito y Favoritos -->
+    <script src="carrito-logica.js"></script>
+    <script src="favoritos-logica.js"></script>
+    <script src="scripts.js"></script>
+</body>
+</html>
+
+

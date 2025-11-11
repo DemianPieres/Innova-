@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🔍 Diagnóstico del Sistema</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            padding: 20px;
+            min-height: 100vh;
+        }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        h1 {
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            font-size: 2.5rem;
+        }
+        .card {
+            background: white;
+            border-radius: 12px;
+            padding: 25px;
+            margin-bottom: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+        .status {
+            display: inline-block;
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .status.ok { background: #10b981; color: white; }
+        .status.error { background: #ef4444; color: white; }
+        .status.warning { background: #f59e0b; color: white; }
+        .status.info { background: #3b82f6; color: white; }
+        .test-item {
+            padding: 15px;
+            margin: 10px 0;
+            border-left: 4px solid #e5e7eb;
+            background: #f9fafb;
+            border-radius: 4px;
+        }
+        .test-item.ok { border-color: #10b981; background: #d1fae5; }
+        .test-item.error { border-color: #ef4444; background: #fee2e2; }
+        button {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 8px;
+            font-size: 1.1rem;
+            cursor: pointer;
+            font-weight: bold;
+            transition: transform 0.2s;
+        }
+        button:hover { transform: translateY(-2px); box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+        button:disabled { opacity: 0.6; cursor: not-allowed; }
+        pre {
+            background: #1f2937;
+            color: #10b981;
+            padding: 15px;
+            border-radius: 8px;
+            overflow-x: auto;
+            font-size: 0.9rem;
+            max-height: 300px;
+            overflow-y: auto;
+        }
+        .products-preview {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
+        }
+        .product-mini {
+            border: 1px solid #e5e7eb;
+            border-radius: 8px;
+            padding: 10px;
+            text-align: center;
+        }
+        .product-mini img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 4px;
+            margin-bottom: 10px;
+        }
+        .product-mini h4 {
+            font-size: 0.9rem;
+            margin-bottom: 5px;
+        }
+        .product-mini .price {
+            color: #ef4444;
+            font-weight: bold;
+        }
+        .spinner {
+            border: 3px solid #f3f3f3;
+            border-top: 3px solid #667eea;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 20px auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+        .progress {
+            font-size: 1.2rem;
+            text-align: center;
+            margin: 20px 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔍 Diagnóstico del Sistema de Productos</h1>
+        
+        <div class="card">
+            <h2>Estado General</h2>
+            <div id="status-general"></div>
+            <button id="btn-diagnostico" onclick="ejecutarDiagnostico()">🔄 Ejecutar Diagnóstico Completo</button>
+        </div>
+
+        <div class="card">
+            <h2>📊 Resultados de las Pruebas</h2>
+            <div id="resultados"></div>
+        </div>
+
+        <div class="card">
+            <h2>📝 Log Detallado</h2>
+            <pre id="logs"></pre>
+        </div>
+
+        <div class="card">
+            <h2>📦 Vista Previa de Productos</h2>
+            <div id="productos-preview"></div>
+        </div>
+    </div>
+
+    <script>
+        const API_URL = 'http://localhost:4000';
+        let logs = [];
+
+        function addLog(msg) {
+            const time = new Date().toLocaleTimeString();
+            logs.push(`[${time}] ${msg}`);
+            document.getElementById('logs').textContent = logs.join('\n');
+            console.log(msg);
+        }
+
+        function mostrarEstado(msg, tipo) {
+            document.getElementById('status-general').innerHTML = 
+                `<div class="status ${tipo}">${msg}</div>`;
+        }
+
+        function agregarResultado(nombre, resultado, tipo) {
+            const div = document.createElement('div');
+            div.className = `test-item ${tipo}`;
+            div.innerHTML = `<strong>${nombre}:</strong> ${resultado}`;
+            document.getElementById('resultados').appendChild(div);
+        }
+
+        async function ejecutarDiagnostico() {
+            const btn = document.getElementById('btn-diagnostico');
+            btn.disabled = true;
+            btn.textContent = '⏳ Ejecutando...';
+            
+            logs = [];
+            document.getElementById('resultados').innerHTML = '<div class="spinner"></div><div class="progress">Ejecutando pruebas...</div>';
+            document.getElementById('productos-preview').innerHTML = '';
+            
+            addLog('🚀 Iniciando diagnóstico completo...');
+            mostrarEstado('Ejecutando pruebas...', 'info');
+
+            let todoOk = true;
+
+            // Test 1: Verificar Backend
+            addLog('\n📡 Test 1: Verificando conexión al backend...');
+            try {
+                const res = await fetch(`${API_URL}/api/health`, { 
+                    method: 'GET',
+                    headers: { 'Content-Type': 'application/json' }
+                });
+                
+                if (res.ok) {
+                    const data = await res.json();
+                    addLog(`✅ Backend respondiendo: ${data.message}`);
+                    addLog(`✅ Base de datos: ${data.database}`);
+                    agregarResultado('Backend', `✅ Conectado (${res.status} OK)`, 'ok');
+                    
+                    if (data.database.includes('❌')) {
+                        agregarResultado('MongoDB', '❌ No conectado - Verifica MONGO_URI en .env', 'error');
+                        todoOk = false;
+                    } else {
+                        agregarResultado('MongoDB', '✅ Conectado correctamente', 'ok');
+                    }
+                } else {
+                    throw new Error(`Status: ${res.status}`);
+                }
+            } catch (error) {
+                addLog(`❌ Backend no responde: ${error.message}`);
+                agregarResultado('Backend', `❌ NO CONECTADO - ${error.message}`, 'error');
+                agregarResultado('Solución', 'Ejecuta en terminal: cd backend && npm start', 'warning');
+                todoOk = false;
+            }
+
+            // Test 2: Verificar Productos
+            addLog('\n📦 Test 2: Verificando productos en la base de datos...');
+            try {
+                const res = await fetch(`${API_URL}/api/products?limit=100`);
+                
+                if (res.ok) {
+                    const data = await res.json();
+                    const productos = data.data || [];
+                    
+                    addLog(`✅ API de productos responde`);
+                    addLog(`📊 Total de productos: ${productos.length}`);
+                    
+                    if (productos.length === 0) {
+                        agregarResultado('Productos', '⚠️ Base de datos vacía (0 productos)', 'warning');
+                        agregarResultado('Solución', 'Ejecuta: cd backend && node insert-sample-products.js', 'warning');
+                        todoOk = false;
+                    } else {
+                        agregarResultado('Productos', `✅ ${productos.length} productos encontrados`, 'ok');
+                        mostrarProductos(productos);
+                    }
+                } else {
+                    throw new Error(`Status: ${res.status}`);
+                }
+            } catch (error) {
+                addLog(`❌ Error al obtener productos: ${error.message}`);
+                agregarResultado('API Productos', `❌ Error: ${error.message}`, 'error');
+                todoOk = false;
+            }
+
+            // Test 3: Verificar Frontend
+            addLog('\n🌐 Test 3: Verificando configuración del frontend...');
+            const puerto = window.location.port;
+            addLog(`📍 Puerto actual del frontend: ${puerto || 'default'}`);
+            
+            if (puerto === '5500' || puerto === '5501') {
+                agregarResultado('Puerto Frontend', `✅ Puerto ${puerto} correcto para CORS`, 'ok');
+            } else {
+                agregarResultado('Puerto Frontend', `⚠️ Puerto ${puerto} - CORS puede fallar`, 'warning');
+                agregarResultado('Recomendación', 'Usa Live Server en puerto 5500', 'info');
+            }
+
+            // Resultado final
+            addLog('\n======================================');
+            if (todoOk) {
+                addLog('✅ ¡TODOS LOS TESTS PASARON!');
+                addLog('El sistema está funcionando correctamente');
+                mostrarEstado('✅ Sistema funcionando correctamente', 'ok');
+            } else {
+                addLog('❌ ALGUNOS TESTS FALLARON');
+                addLog('Revisa los resultados arriba para ver qué corregir');
+                mostrarEstado('❌ Hay problemas que corregir', 'error');
+            }
+            addLog('======================================');
+
+            btn.disabled = false;
+            btn.textContent = '🔄 Ejecutar Diagnóstico Completo';
+        }
+
+        function mostrarProductos(productos) {
+            const container = document.getElementById('productos-preview');
+            container.innerHTML = '';
+            
+            productos.slice(0, 8).forEach(p => {
+                const nombre = p.name || p.nombre;
+                const precio = p.price || p.precio;
+                const imagen = p.image || p.imageUrl || p.imagen;
+                
+                const div = document.createElement('div');
+                div.className = 'product-mini';
+                div.innerHTML = `
+                    <img src="${imagen}" alt="${nombre}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22200%22 height=%22120%22%3E%3Crect fill=%22%23ddd%22 width=%22200%22 height=%22120%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23666%22 font-size=%2212%22%3ESin imagen%3C/text%3E%3C/svg%3E'">
+                    <h4>${nombre}</h4>
+                    <div class="price">$${precio.toLocaleString('es-AR')}</div>
+                `;
+                container.appendChild(div);
+            });
+        }
+
+        // Auto-ejecutar al cargar
+        window.addEventListener('load', () => {
+            addLog('🌐 Página de diagnóstico cargada');
+            addLog('💡 Haz clic en el botón para iniciar las pruebas');
+            mostrarEstado('Listo para ejecutar pruebas', 'info');
+        });
+    </script>
+</body>
+</html>
+
+

@@ -1,0 +1,513 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Panel de Administrador - MMDR E-COMMERCE</title>
+    <link rel="stylesheet" href="admin-styles.css">
+    <link rel="stylesheet" href="analytics-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.0/dist/chart.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/xlsx@0.18.5/dist/xlsx.full.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf@2.5.1/dist/jspdf.umd.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jspdf-autotable@3.8.2/dist/jspdf.plugin.autotable.min.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="admin-header">
+        <div class="admin-header-bottom">
+            <nav class="admin-main-nav">
+                <a href="inicio.html" class="admin-nav-link">Inicio</a>
+                <a href="productos.html" class="admin-nav-link">Productos</a>
+                <a href="Index.html" class="admin-nav-link active">Login</a>
+            </nav>
+        </div>
+    </header>
+
+    <div class="admin-main-container">
+        <!-- Sidebar -->
+        <aside class="admin-sidebar">
+            <div class="admin-sidebar-header">
+                <h1 class="admin-app-title">MMDR E-COMERCE</h1>
+            </div>
+            <nav class="admin-sidebar-nav">
+                <a href="#" class="admin-sidebar-link active" data-section="inicio">
+                    <i class="fas fa-home"></i>
+                    <span>Inicio</span>
+                </a>
+                <a href="#" class="admin-sidebar-link" data-section="usuarios">
+                    <i class="fas fa-users"></i>
+                    <span>Usuarios</span>
+                </a>
+                <a href="#" class="admin-sidebar-link" data-section="productos">
+                    <i class="fas fa-box"></i>
+                    <span>Productos</span>
+                </a>
+                <a href="#" class="admin-sidebar-link" data-section="insumos">
+                    <i class="fas fa-list"></i>
+                    <span>Administrar Insumos</span>
+                </a>
+                <a href="#" class="admin-sidebar-link" data-section="paginas">
+                    <i class="fas fa-file-alt"></i>
+                    <span>Páginas</span>
+                </a>
+                <a href="#" class="admin-sidebar-link" data-section="graficos">
+                    <i class="fas fa-chart-pie"></i>
+                    <span>Gráficos</span>
+                </a>
+            </nav>
+            <div class="admin-sidebar-footer">
+                <a href="#" class="admin-logout-link" id="logout-btn">
+                    <i class="fas fa-arrow-right"></i>
+                    <span>Cerrar sesión</span>
+                </a>
+            </div>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="admin-main-content">
+            <!-- Inicio Section -->
+            <section id="inicio-section" class="admin-content-section active">
+                <div class="admin-section-header">
+                    <h2 class="admin-section-title">Inicio</h2>
+                </div>
+                
+                <!-- Bloque de Bienvenida -->
+                <div class="welcome-container">
+                    <div class="welcome-card">
+                        <div class="welcome-header">
+                            <div class="welcome-icon">
+                                <i class="fas fa-sun"></i>
+                            </div>
+                            <div class="welcome-content">
+                                <h3 id="welcome-title">Bienvenido, Administrador</h3>
+                                <p class="welcome-subtitle">Panel de Control MMDR E-COMMERCE</p>
+                            </div>
+                        </div>
+                        <div class="stats-grid">
+                            <div class="stat-item">
+                                <div class="stat-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="pending-orders">12</span>
+                                    <span class="stat-label">Pedidos Pendientes</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">
+                                    <i class="fas fa-users"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="new-users">4</span>
+                                    <span class="stat-label">Nuevos Usuarios</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">
+                                    <i class="fas fa-dollar-sign"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="today-revenue">$45,678</span>
+                                    <span class="stat-label">Ingresos Hoy</span>
+                                </div>
+                            </div>
+                            <div class="stat-item">
+                                <div class="stat-icon">
+                                    <i class="fas fa-box"></i>
+                                </div>
+                                <div class="stat-info">
+                                    <span class="stat-number" id="low-stock">3</span>
+                                    <span class="stat-label">Stock Bajo</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Calendario y Recordatorios -->
+                <div class="calendar-container">
+                    <div class="calendar-card">
+                        <div class="calendar-header">
+                            <h3><i class="fas fa-calendar-alt"></i> Calendario</h3>
+                            <button class="add-reminder-btn" id="add-reminder-btn">
+                                <i class="fas fa-plus"></i>
+                                Agregar Recordatorio
+                            </button>
+                        </div>
+                        
+                        <div class="calendar-content">
+                            <div class="calendar-navigation">
+                                <button class="nav-btn" id="prev-month">
+                                    <i class="fas fa-chevron-left"></i>
+                                </button>
+                                <h4 id="current-month">Enero 2024</h4>
+                                <button class="nav-btn" id="next-month">
+                                    <i class="fas fa-chevron-right"></i>
+                                </button>
+                            </div>
+                            
+                            <div class="calendar-grid" id="calendar-grid">
+                                <!-- Los días se generarán dinámicamente -->
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="reminders-card">
+                        <div class="reminders-header">
+                            <h3><i class="fas fa-bell"></i> Recordatorios</h3>
+                        </div>
+                        <div class="reminders-list" id="reminders-list">
+                            <!-- Los recordatorios se cargarán dinámicamente -->
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal para Agregar Recordatorio -->
+                <div id="reminder-modal" class="reminder-modal">
+                    <div class="reminder-modal-content">
+                        <div class="reminder-modal-header">
+                            <h3>Agregar Recordatorio</h3>
+                            <span class="close-modal" id="close-reminder-modal">&times;</span>
+                        </div>
+                        <form id="reminder-form" class="reminder-form">
+                            <div class="form-group">
+                                <label for="reminder-title">Título</label>
+                                <input type="text" id="reminder-title" name="title" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-description">Descripción</label>
+                                <textarea id="reminder-description" name="description" rows="3"></textarea>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-date">Fecha</label>
+                                <input type="date" id="reminder-date" name="date" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-type">Tipo</label>
+                                <select id="reminder-type" name="type" required>
+                                    <option value="campaign">Campaña de Descuento</option>
+                                    <option value="stock">Reposición de Stock</option>
+                                    <option value="delivery">Vencimiento de Entrega</option>
+                                    <option value="meeting">Reunión</option>
+                                    <option value="other">Otro</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="reminder-priority">Prioridad</label>
+                                <select id="reminder-priority" name="priority">
+                                    <option value="low">Baja</option>
+                                    <option value="medium" selected>Media</option>
+                                    <option value="high">Alta</option>
+                                </select>
+                            </div>
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" id="cancel-reminder">Cancelar</button>
+                                <button type="submit" class="btn-primary">Guardar Recordatorio</button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Usuarios Section -->
+            <section id="usuarios-section" class="admin-content-section">
+                <div class="admin-section-header">
+                    <h2 class="admin-section-title">Lista de Usuarios</h2>
+                    <div class="admin-section-actions">
+                        <div class="admin-search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Buscar usuarios..." id="user-search">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="admin-table-container">
+                    <table class="admin-data-table">
+                        <thead>
+                            <tr>
+                                <th>Usuario</th>
+                                <th>Email</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="users-table-body">
+                            <!-- Los usuarios se cargarán dinámicamente aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="admin-pagination" id="users-pagination">
+                    <!-- La paginación se generará dinámicamente -->
+                </div>
+            </section>
+
+            <!-- Productos Section -->
+            <section id="productos-section" class="admin-content-section">
+                <div class="admin-section-header">
+                    <h2 class="admin-section-title">Gestión de Productos</h2>
+                    <div class="admin-section-actions">
+                        <div class="admin-search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Buscar productos..." id="product-search">
+                        </div>
+                        <div class="admin-filter-dropdown">
+                            <button class="admin-filter-btn" id="category-filter">
+                                <span>Todas las categorías</span>
+                                <i class="fas fa-chevron-down"></i>
+                            </button>
+                        </div>
+                        <button class="admin-add-btn" id="export-products-excel-btn" title="Exportar productos a Excel">
+                            <i class="fas fa-file-excel"></i>
+                        </button>
+                        <button class="admin-add-btn" id="export-products-pdf-btn" title="Exportar productos a PDF">
+                            <i class="fas fa-file-pdf"></i>
+                        </button>
+                        <button class="admin-add-btn" id="add-product-btn">
+                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-box"></i>
+                        </button>
+                    </div>
+                </div>
+
+                <div class="admin-table-container">
+                    <table class="admin-data-table">
+                        <thead>
+                            <tr>
+                                <th>Producto</th>
+                                <th>Precio</th>
+                                <th>Stock</th>
+                                <th>Categoría</th>
+                                <th>Estado</th>
+                                <th>Imagen</th>
+                                <th>Acciones</th>
+                            </tr>
+                        </thead>
+                        <tbody id="products-table-body">
+                            <!-- Los productos se cargarán dinámicamente aquí -->
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="admin-pagination" id="products-pagination">
+                    <!-- La paginación se generará dinámicamente -->
+                </div>
+            </section>
+
+            <!-- Insumos Section -->
+            <section id="insumos-section" class="admin-content-section">
+                <div class="admin-section-header">
+                    <h2 class="admin-section-title">Administrar Insumos</h2>
+                    <div class="admin-section-actions">
+                        <div class="admin-search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Buscar insumos...">
+                        </div>
+                        <button class="admin-add-btn">
+                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-list"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="admin-dashboard-content">
+                    <p>Funcionalidad de insumos en desarrollo...</p>
+                </div>
+            </section>
+
+            <!-- Páginas Section -->
+            <section id="paginas-section" class="admin-content-section">
+                <div class="admin-section-header">
+                    <h2 class="admin-section-title">Gestión de Páginas</h2>
+                    <div class="admin-section-actions">
+                        <div class="admin-search-bar">
+                            <i class="fas fa-search"></i>
+                            <input type="text" placeholder="Buscar páginas...">
+                        </div>
+                        <button class="admin-add-btn">
+                            <i class="fas fa-plus"></i>
+                            <i class="fas fa-file-alt"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="admin-dashboard-content">
+                    <p>Funcionalidad de páginas en desarrollo...</p>
+                </div>
+            </section>
+
+            <!-- Gráficos Section -->
+            <section id="graficos-section" class="admin-content-section">
+                <div class="admin-section-header">
+                    <h2 class="admin-section-title">Gráficos y Estadísticas</h2>
+                    <div class="admin-section-actions">
+                        <button class="admin-refresh-btn" onclick="loadDashboardStats()">
+                            <i class="fas fa-sync-alt"></i>
+                            Actualizar Datos
+                        </button>
+                        <button class="admin-refresh-btn" id="export-excel-btn" title="Exportar a Excel">
+                            <i class="fas fa-file-excel"></i>
+                            Exportar Excel
+                        </button>
+                        <button class="admin-refresh-btn" id="export-pdf-btn" title="Exportar a PDF">
+                            <i class="fas fa-file-pdf"></i>
+                            Exportar PDF
+                        </button>
+                    </div>
+                </div>
+                <div class="admin-dashboard-content">
+                    <div class="analytics-grid">
+                        <!-- Gráfico de ventas por mes (Barras) -->
+                        <div class="analytics-card full-width">
+                            <div class="analytics-card-header">
+                                <h3><i class="fas fa-chart-bar"></i> Ventas por Mes</h3>
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="analytics-card-content">
+                                <canvas id="salesByMonthChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico de productos más vendidos (Pie) -->
+                        <div class="analytics-card">
+                            <div class="analytics-card-header">
+                                <h3><i class="fas fa-chart-pie"></i> Productos Más Vendidos</h3>
+                                <i class="fas fa-box"></i>
+                            </div>
+                            <div class="analytics-card-content">
+                                <canvas id="topProductsChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico de usuarios activos (Línea) -->
+                        <div class="analytics-card">
+                            <div class="analytics-card-header">
+                                <h3><i class="fas fa-chart-line"></i> Evolución de Usuarios Activos</h3>
+                                <i class="fas fa-users"></i>
+                            </div>
+                            <div class="analytics-card-content">
+                                <canvas id="activeUsersChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Gráfico de ingresos diarios (Área) -->
+                        <div class="analytics-card">
+                            <div class="analytics-card-header">
+                                <h3><i class="fas fa-chart-area"></i> Ingresos Diarios (Últimas 2 Semanas)</h3>
+                                <i class="fas fa-dollar-sign"></i>
+                            </div>
+                            <div class="analytics-card-content">
+                                <canvas id="dailyRevenueChart"></canvas>
+                            </div>
+                        </div>
+
+                        <!-- Resumen de estadísticas -->
+                        <div class="analytics-card full-width">
+                            <div class="analytics-card-header">
+                                <h3><i class="fas fa-chart-area"></i> Resumen de Estadísticas</h3>
+                                <i class="fas fa-info-circle"></i>
+                            </div>
+                            <div class="analytics-card-content">
+                                <div class="stats-summary" id="stats-summary">
+                                    <div class="stat-item">
+                                        <span class="stat-label">Total de Ventas:</span>
+                                        <span class="stat-value" id="total-sales">0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Ingresos Totales:</span>
+                                        <span class="stat-value" id="total-revenue">$0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Promedio por Venta:</span>
+                                        <span class="stat-value" id="avg-sale">$0</span>
+                                    </div>
+                                    <div class="stat-item">
+                                        <span class="stat-label">Tasa de Conversión:</span>
+                                        <span class="stat-value" id="conversion-rate">0%</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <!-- Modal para Crear/Editar Producto -->
+    <div id="product-modal" class="admin-modal">
+        <div class="admin-modal-content">
+            <div class="admin-modal-header">
+                <h3 id="product-modal-title">Agregar Producto</h3>
+                <span class="admin-modal-close" id="close-product-modal">&times;</span>
+            </div>
+            <form id="product-form" class="admin-form">
+                <div class="admin-form-row">
+                    <div class="admin-form-group">
+                        <label for="product-name">Nombre del Producto *</label>
+                        <input type="text" id="product-name" name="name" required>
+                    </div>
+                    <div class="admin-form-group">
+                        <label for="product-category">Categoría *</label>
+                        <select id="product-category" name="category" required>
+                            <option value="">Seleccionar categoría</option>
+                            <option value="asientos">Asientos</option>
+                            <option value="volantes">Volantes</option>
+                            <option value="electronica">Electrónica</option>
+                            <option value="suspension">Suspensión</option>
+                            <option value="accesorios">Accesorios</option>
+                            <option value="otros">Otros</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="admin-form-group">
+                    <label for="product-description">Descripción *</label>
+                    <textarea id="product-description" name="description" rows="3" required></textarea>
+                </div>
+                <div class="admin-form-row">
+                    <div class="admin-form-group">
+                        <label for="product-price">Precio *</label>
+                        <input type="number" id="product-price" name="price" min="0" step="0.01" required>
+                    </div>
+                    <div class="admin-form-group">
+                        <label for="product-original-price">Precio Original</label>
+                        <input type="number" id="product-original-price" name="originalPrice" min="0" step="0.01">
+                    </div>
+                </div>
+                <div class="admin-form-row">
+                    <div class="admin-form-group">
+                        <label for="product-stock">Stock *</label>
+                        <input type="number" id="product-stock" name="stock" min="0" required>
+                    </div>
+                    <div class="admin-form-group">
+                        <label for="product-discount">Descuento (%)</label>
+                        <input type="number" id="product-discount" name="discount" min="0" max="100" step="1">
+                    </div>
+                </div>
+                <div class="admin-form-group">
+                    <label for="product-image">URL de la Imagen *</label>
+                    <input type="url" id="product-image" name="image" required>
+                </div>
+                <div class="admin-form-row">
+                    <div class="admin-form-group">
+                        <label for="product-tags">Tags (separados por comas)</label>
+                        <input type="text" id="product-tags" name="tags" placeholder="tag1, tag2, tag3">
+                    </div>
+                    <div class="admin-form-group admin-checkbox-group">
+                        <label>
+                            <input type="checkbox" id="product-featured" name="featured">
+                            Producto Destacado
+                        </label>
+                    </div>
+                </div>
+                <div class="admin-form-actions">
+                    <button type="button" class="admin-btn-secondary" id="cancel-product">Cancelar</button>
+                    <button type="submit" class="admin-btn-primary" id="save-product">Guardar Producto</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <script src="scripts.js"></script>
+    <script src="admin-scripts.js"></script>
+</body>
+</html>

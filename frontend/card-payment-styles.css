@@ -1,0 +1,403 @@
+/* ===== ESTILOS PARA FORMULARIO DE TARJETA ===== */
+
+/* Contenedor del formulario de pago */
+.payment-form-container {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin-bottom: 2rem;
+}
+
+/* Método de pago seleccionado */
+.selected-payment-method {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 1rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 8px;
+    margin-bottom: 2rem;
+    border-left: 4px solid #e74c3c;
+}
+
+.selected-payment-method i {
+    font-size: 1.5rem;
+    color: #e74c3c;
+}
+
+.selected-payment-method span {
+    font-weight: 600;
+    color: #1a1a2e;
+}
+
+/* Formulario de tarjeta */
+.card-payment-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.card-payment-form .form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.card-payment-form .form-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1rem;
+}
+
+.card-payment-form label {
+    font-weight: 600;
+    color: #333;
+    font-size: 0.9rem;
+}
+
+.card-payment-form input {
+    padding: 0.875rem;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #f9f9f9;
+}
+
+.card-payment-form input:focus {
+    outline: none;
+    border-color: #e74c3c;
+    background: white;
+    box-shadow: 0 0 0 3px rgba(231, 76, 60, 0.1);
+}
+
+.card-payment-form input.error {
+    border-color: #e74c3c;
+    background: #fff5f5;
+}
+
+.card-payment-form .error-message {
+    color: #e74c3c;
+    font-size: 0.8rem;
+    font-weight: 500;
+    margin-top: 0.25rem;
+    display: none;
+}
+
+/* Sección de tarjetas de prueba */
+.test-cards-section {
+    background: #f8f9fa;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    border: 2px dashed #dee2e6;
+}
+
+.test-cards-section h4 {
+    margin: 0 0 1rem 0;
+    color: #495057;
+    font-size: 1rem;
+    text-align: center;
+}
+
+.test-cards {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.test-card-btn {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.75rem 1rem;
+    background: white;
+    border: 2px solid #e0e0e0;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+.test-card-btn:hover {
+    border-color: #e74c3c;
+    background: #fff5f5;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.15);
+}
+
+.test-card-btn i {
+    font-size: 1.2rem;
+}
+
+.test-card-btn:nth-child(1) i { color: #1a1f71; } /* Visa */
+.test-card-btn:nth-child(2) i { color: #eb001b; } /* Mastercard */
+.test-card-btn:nth-child(3) i { color: #006fcf; } /* Amex */
+
+/* Procesamiento de pago */
+.payment-processing {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-radius: 12px;
+}
+
+.payment-processing i {
+    font-size: 3rem;
+    color: #e74c3c;
+    margin-bottom: 1rem;
+}
+
+.payment-processing h3 {
+    margin: 0 0 0.5rem 0;
+    color: #1a1a2e;
+    font-size: 1.5rem;
+}
+
+.payment-processing p {
+    margin: 0;
+    color: #666;
+    font-size: 1rem;
+}
+
+/* Resumen del pedido en paso 2 */
+.order-summary-step2 {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    position: sticky;
+    top: 2rem;
+}
+
+.order-summary-step2 h3 {
+    margin: 0 0 1.5rem 0;
+    color: #1a1a2e;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.75rem;
+}
+
+.summary-items {
+    margin-bottom: 1.5rem;
+}
+
+.summary-item {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    padding: 0.75rem 0;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.summary-item:last-child {
+    border-bottom: none;
+}
+
+.summary-item-image {
+    width: 50px;
+    height: 50px;
+    border-radius: 8px;
+    overflow: hidden;
+    flex-shrink: 0;
+}
+
+.summary-item-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.summary-item-info {
+    flex: 1;
+}
+
+.summary-item-info h4 {
+    margin: 0 0 0.25rem 0;
+    font-size: 0.9rem;
+    color: #333;
+}
+
+.summary-item-info p {
+    margin: 0;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.summary-item-price {
+    font-weight: 700;
+    color: #e74c3c;
+    font-size: 0.9rem;
+}
+
+.summary-totals {
+    border-top: 2px solid #e0e0e0;
+    padding-top: 1rem;
+}
+
+.summary-row {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 0.5rem;
+}
+
+.summary-row.total {
+    font-weight: 700;
+    font-size: 1.1rem;
+    color: #e74c3c;
+    border-top: 1px solid #e0e0e0;
+    padding-top: 0.5rem;
+    margin-top: 0.5rem;
+}
+
+.security-info {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    margin-top: 1rem;
+    padding: 0.75rem;
+    background: #f8f9fa;
+    border-radius: 6px;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+.security-info i {
+    color: #27ae60;
+}
+
+/* Sección de factura */
+.invoice-section {
+    background: white;
+    border-radius: 12px;
+    padding: 2rem;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+    margin: 2rem 0;
+}
+
+.invoice-section h3 {
+    margin: 0 0 1.5rem 0;
+    color: #1a1a2e;
+    font-size: 1.2rem;
+    border-bottom: 2px solid #e0e0e0;
+    padding-bottom: 0.75rem;
+}
+
+.invoice-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+}
+
+.btn-download-invoice,
+.btn-email-invoice {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.875rem 1.5rem;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    font-size: 0.9rem;
+}
+
+.btn-download-invoice {
+    background: linear-gradient(135deg, #e74c3c 0%, #c0392b 100%);
+    color: white;
+}
+
+.btn-download-invoice:hover {
+    background: linear-gradient(135deg, #c0392b 0%, #a93226 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(231, 76, 60, 0.3);
+}
+
+.btn-email-invoice {
+    background: #f8f9fa;
+    color: #333;
+    border: 2px solid #e0e0e0;
+}
+
+.btn-email-invoice:hover {
+    background: #e9ecef;
+    border-color: #e74c3c;
+    color: #e74c3c;
+}
+
+/* Estado completado */
+.status-completed {
+    background: #27ae60;
+    color: white;
+    padding: 0.25rem 0.75rem;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 600;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .payment-form-container {
+        padding: 1.5rem;
+    }
+    
+    .card-payment-form .form-row {
+        grid-template-columns: 1fr;
+    }
+    
+    .test-cards {
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .test-card-btn {
+        width: 100%;
+        max-width: 200px;
+        justify-content: center;
+    }
+    
+    .order-summary-step2 {
+        position: static;
+        margin-top: 2rem;
+    }
+    
+    .invoice-actions {
+        flex-direction: column;
+    }
+    
+    .btn-download-invoice,
+    .btn-email-invoice {
+        width: 100%;
+        justify-content: center;
+    }
+}
+
+@media (max-width: 480px) {
+    .payment-form-container {
+        padding: 1rem;
+    }
+    
+    .selected-payment-method {
+        padding: 0.75rem;
+    }
+    
+    .test-cards-section {
+        padding: 1rem;
+    }
+    
+    .payment-processing {
+        padding: 2rem 1rem;
+    }
+    
+    .payment-processing i {
+        font-size: 2rem;
+    }
+    
+    .payment-processing h3 {
+        font-size: 1.2rem;
+    }
+}

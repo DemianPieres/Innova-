@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout - MMDR</title>
+    <link rel="stylesheet" href="checkout-styles.css">
+    <link rel="stylesheet" href="payment-methods-styles.css">
+    <link rel="stylesheet" href="card-payment-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <img src="Imagenes/logommdr.png" alt="MMDR Logo">
+                    <h1>MMDR</h1>
+                </div>
+                <div class="checkout-steps">
+                    <div class="step active" data-step="1">
+                        <span class="step-number">1</span>
+                        <span class="step-label">Datos</span>
+                    </div>
+                    <div class="step" data-step="2">
+                        <span class="step-number">2</span>
+                        <span class="step-label">Pago</span>
+                    </div>
+                    <div class="step" data-step="3">
+                        <span class="step-number">3</span>
+                        <span class="step-label">Confirmación</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <!-- Paso 1: Datos Personales -->
+            <div class="checkout-step" id="step-1">
+                <div class="step-header">
+                    <h1>Datos Personales</h1>
+                    <p>Completa tus datos para procesar el pedido</p>
+                </div>
+
+                <div class="checkout-content">
+                    <div class="form-section">
+                        <form id="checkout-form" class="checkout-form">
+                            <!-- Información Personal -->
+                            <div class="form-group">
+                                <h3>Información Personal</h3>
+                                <div class="form-row">
+                                    <div class="form-field">
+                                        <label for="firstName">Nombre *</label>
+                                        <input type="text" id="firstName" name="firstName" required>
+                                        <span class="error-message"></span>
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="lastName">Apellido *</label>
+                                        <input type="text" id="lastName" name="lastName" required>
+                                        <span class="error-message"></span>
+                                    </div>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-field">
+                                        <label for="email">Email *</label>
+                                        <input type="email" id="email" name="email" required>
+                                        <span class="error-message"></span>
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="phone">Teléfono *</label>
+                                        <input type="tel" id="phone" name="phone" required>
+                                        <span class="error-message"></span>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <!-- Dirección de Envío -->
+                            <div class="form-group">
+                                <h3>Dirección de Envío</h3>
+                                <div class="form-field">
+                                    <label for="street">Dirección *</label>
+                                    <input type="text" id="street" name="street" required>
+                                    <span class="error-message"></span>
+                                </div>
+                                <div class="form-row">
+                                    <div class="form-field">
+                                        <label for="city">Ciudad *</label>
+                                        <input type="text" id="city" name="city" required>
+                                        <span class="error-message"></span>
+                                    </div>
+                                    <div class="form-field">
+                                        <label for="state">Provincia *</label>
+                                        <select id="state" name="state" required>
+                                            <option value="">Seleccionar provincia</option>
+                                            <option value="CABA">Ciudad Autónoma de Buenos Aires</option>
+                                            <option value="Buenos Aires">Buenos Aires</option>
+                                            <option value="Córdoba">Córdoba</option>
+                                            <option value="Santa Fe">Santa Fe</option>
+                                            <option value="Mendoza">Mendoza</option>
+                                            <option value="Tucumán">Tucumán</option>
+                                            <option value="Entre Ríos">Entre Ríos</option>
+                                            <option value="Salta">Salta</option>
+                                            <option value="Misiones">Misiones</option>
+                                            <option value="Chaco">Chaco</option>
+                                            <option value="Corrientes">Corrientes</option>
+                                            <option value="Santiago del Estero">Santiago del Estero</option>
+                                            <option value="San Juan">San Juan</option>
+                                            <option value="Jujuy">Jujuy</option>
+                                            <option value="Río Negro">Río Negro</option>
+                                            <option value="Formosa">Formosa</option>
+                                            <option value="Neuquén">Neuquén</option>
+                                            <option value="Chubut">Chubut</option>
+                                            <option value="San Luis">San Luis</option>
+                                            <option value="Catamarca">Catamarca</option>
+                                            <option value="La Rioja">La Rioja</option>
+                                            <option value="La Pampa">La Pampa</option>
+                                            <option value="Santa Cruz">Santa Cruz</option>
+                                            <option value="Tierra del Fuego">Tierra del Fuego</option>
+                                        </select>
+                                        <span class="error-message"></span>
+                                    </div>
+                                </div>
+                                <div class="form-field">
+                                    <label for="zipCode">Código Postal *</label>
+                                    <input type="text" id="zipCode" name="zipCode" required>
+                                    <span class="error-message"></span>
+                                </div>
+                            </div>
+
+                            <!-- Método de Pago -->
+                            <div class="form-group">
+                                <h3>Método de Pago</h3>
+                                <div class="payment-methods">
+                                    <div class="payment-method-group">
+                                        <h4>Tarjetas</h4>
+                                        <div class="payment-options">
+                                            <label class="payment-option">
+                                                <input type="radio" name="paymentMethod" value="credit-card" required>
+                                                <div class="payment-card">
+                                                    <i class="fas fa-credit-card"></i>
+                                                    <span>Tarjeta de Crédito</span>
+                                                </div>
+                                            </label>
+                                            <label class="payment-option">
+                                                <input type="radio" name="paymentMethod" value="debit-card">
+                                                <div class="payment-card">
+                                                    <i class="fas fa-credit-card"></i>
+                                                    <span>Tarjeta de Débito</span>
+                                                </div>
+                                            </label>
+                                            <label class="payment-option">
+                                                <input type="radio" name="paymentMethod" value="prepaid-card">
+                                                <div class="payment-card">
+                                                    <i class="fas fa-credit-card"></i>
+                                                    <span>Tarjeta Prepago</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="payment-method-group">
+                                        <h4>Monederos Digitales</h4>
+                                        <div class="payment-options">
+                                            <label class="payment-option">
+                                                <input type="radio" name="paymentMethod" value="paypal">
+                                                <div class="payment-card">
+                                                    <i class="fab fa-paypal"></i>
+                                                    <span>PayPal</span>
+                                                </div>
+                                            </label>
+                                            <label class="payment-option">
+                                                <input type="radio" name="paymentMethod" value="apple-pay">
+                                                <div class="payment-card">
+                                                    <i class="fab fa-apple-pay"></i>
+                                                    <span>Apple Pay</span>
+                                                </div>
+                                            </label>
+                                            <label class="payment-option">
+                                                <input type="radio" name="paymentMethod" value="google-pay">
+                                                <div class="payment-card">
+                                                    <i class="fab fa-google-pay"></i>
+                                                    <span>Google Pay</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="payment-method-group">
+                                        <h4>Otros Métodos</h4>
+                                        <div class="payment-options">
+                                            <label class="payment-option">
+                                                <input type="radio" name="paymentMethod" value="bank-transfer">
+                                                <div class="payment-card">
+                                                    <i class="fas fa-university"></i>
+                                                    <span>Transferencia Bancaria</span>
+                                                </div>
+                                            </label>
+                                            <label class="payment-option">
+                                                <input type="radio" name="paymentMethod" value="bnpl">
+                                                <div class="payment-card">
+                                                    <i class="fas fa-calendar-check"></i>
+                                                    <span>Compra Ahora, Paga Después</span>
+                                                </div>
+                                            </label>
+                                            <label class="payment-option">
+                                                <input type="radio" name="paymentMethod" value="cash-on-delivery">
+                                                <div class="payment-card">
+                                                    <i class="fas fa-truck"></i>
+                                                    <span>Contra Reembolso</span>
+                                                </div>
+                                            </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" onclick="goBack()">
+                                    <i class="fas fa-arrow-left"></i>
+                                    Volver al Carrito
+                                </button>
+                                <button type="submit" class="btn-primary">
+                                    Continuar al Pago
+                                    <i class="fas fa-arrow-right"></i>
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+
+                    <!-- Resumen del Pedido -->
+                    <div class="order-summary">
+                        <h3>Resumen del Pedido</h3>
+                        <div class="summary-items" id="summary-items">
+                            <!-- Los items se cargarán dinámicamente -->
+                        </div>
+                        <div class="summary-totals">
+                            <div class="summary-row">
+                                <span>Subtotal:</span>
+                                <span id="summary-subtotal">$0</span>
+                            </div>
+                            <div class="summary-row">
+                                <span>Envío:</span>
+                                <span id="summary-shipping">Gratis</span>
+                            </div>
+                            <div class="summary-row total">
+                                <span>Total:</span>
+                                <span id="summary-total">$0</span>
+                            </div>
+                        </div>
+                        <div class="security-info">
+                            <i class="fas fa-shield-alt"></i>
+                            <span>Compra 100% segura con MercadoPago</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 2: Pago -->
+            <div class="checkout-step" id="step-2" style="display: none;">
+                <div class="step-header">
+                    <h1>Procesar Pago</h1>
+                    <p>Completa los datos de tu tarjeta para finalizar la compra</p>
+                </div>
+
+                <div class="payment-content">
+                    <div class="payment-form-container">
+                        <!-- Información del método de pago seleccionado -->
+                        <div class="selected-payment-method" id="selected-payment-method">
+                            <i class="fas fa-credit-card"></i>
+                            <span>Tarjeta de Crédito</span>
+                        </div>
+
+                        <!-- Formulario de datos de tarjeta -->
+                        <form id="card-payment-form" class="card-payment-form">
+                            <div class="form-group">
+                                <label for="card-number">Número de Tarjeta *</label>
+                                <input type="text" id="card-number" name="cardNumber" placeholder="1234 5678 9012 3456" maxlength="19" required>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <div class="form-row">
+                                <div class="form-field">
+                                    <label for="card-expiry">Fecha de Vencimiento *</label>
+                                    <input type="text" id="card-expiry" name="cardExpiry" placeholder="MM/AA" maxlength="5" required>
+                                    <span class="error-message"></span>
+                                </div>
+                                <div class="form-field">
+                                    <label for="card-cvv">CVV *</label>
+                                    <input type="text" id="card-cvv" name="cardCvv" placeholder="123" maxlength="4" required>
+                                    <span class="error-message"></span>
+                                </div>
+                            </div>
+
+                            <div class="form-group">
+                                <label for="cardholder-name">Nombre del Titular *</label>
+                                <input type="text" id="cardholder-name" name="cardholderName" placeholder="Como aparece en la tarjeta" required>
+                                <span class="error-message"></span>
+                            </div>
+
+                            <!-- Tarjetas de prueba -->
+                            <div class="test-cards-section">
+                                <h4>Tarjetas de Prueba</h4>
+                                <div class="test-cards">
+                                    <button type="button" class="test-card-btn" onclick="fillTestCard('visa')">
+                                        <i class="fab fa-cc-visa"></i>
+                                        Visa Prueba
+                                    </button>
+                                    <button type="button" class="test-card-btn" onclick="fillTestCard('mastercard')">
+                                        <i class="fab fa-cc-mastercard"></i>
+                                        Mastercard Prueba
+                                    </button>
+                                    <button type="button" class="test-card-btn" onclick="fillTestCard('amex')">
+                                        <i class="fab fa-cc-amex"></i>
+                                        Amex Prueba
+                                    </button>
+                                </div>
+                            </div>
+
+                            <div class="form-actions">
+                                <button type="button" class="btn-secondary" onclick="volverAlPaso1()">
+                                    <i class="fas fa-arrow-left"></i>
+                                    Volver
+                                </button>
+                                <button type="submit" class="btn-primary" id="confirm-payment">
+                                    <i class="fas fa-credit-card"></i>
+                                    Confirmar Pago
+                                </button>
+                            </div>
+                        </form>
+
+                        <!-- Loading durante procesamiento -->
+                        <div class="payment-processing" id="payment-processing" style="display: none;">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <h3>Procesando tu pago...</h3>
+                            <p>Por favor espera mientras verificamos tu información</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Paso 3: Confirmación -->
+            <div class="checkout-step" id="step-3" style="display: none;">
+                <div class="step-header">
+                    <h1>¡Pedido Confirmado!</h1>
+                    <p>Tu pedido ha sido procesado exitosamente</p>
+                </div>
+
+                <div class="confirmation-content">
+                    <div class="confirmation-success">
+                        <i class="fas fa-check-circle"></i>
+                        <h3>¡Pago Exitoso!</h3>
+                        <p>Tu pedido ha sido confirmado y está siendo procesado</p>
+                    </div>
+                    
+                    <div class="order-details">
+                        <h3>Detalles del Pedido</h3>
+                        <div class="order-info">
+                            <div class="info-item">
+                                <span>Número de Orden:</span>
+                                <span id="confirmation-order-number">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Total Pagado:</span>
+                                <span id="confirmation-total">$0</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Fecha:</span>
+                                <span id="confirmation-date">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Método de Pago:</span>
+                                <span id="confirmation-payment-method">-</span>
+                            </div>
+                            <div class="info-item">
+                                <span>Estado:</span>
+                                <span class="status-completed">Completado</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Factura descargable -->
+                    <div class="invoice-section">
+                        <h3>Factura</h3>
+                        <div class="invoice-actions">
+                            <button class="btn-download-invoice" onclick="descargarFactura()">
+                                <i class="fas fa-download"></i>
+                                Descargar Factura PDF
+                            </button>
+                            <button class="btn-email-invoice" onclick="enviarFacturaPorEmail()">
+                                <i class="fas fa-envelope"></i>
+                                Enviar por Email
+                            </button>
+                        </div>
+                    </div>
+
+                    <div class="confirmation-actions">
+                        <button class="btn-primary" onclick="goToProducts()">
+                            <i class="fas fa-shopping-bag"></i>
+                            Seguir Comprando
+                        </button>
+                        <button class="btn-secondary" onclick="viewOrder()">
+                            <i class="fas fa-eye"></i>
+                            Ver Pedido
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MMDR</h3>
+                    <p>Tu tienda de confianza para accesorios automotrices</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-envelope"></i> info@mmdr.com</p>
+                    <p><i class="fas fa-phone"></i> +54 9 11 1234-5678</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MMDR. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="carrito-logica.js"></script>
+    <script src="checkout-scripts.js"></script>
+</body>
+</html>

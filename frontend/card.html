@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carrito - MMDR</title>
+    <link rel="stylesheet" href="cart-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="nav-content">
+                <div class="logo">
+                    <img src="Imagenes/logommdr.png" alt="MMDR Logo">
+                    <h1>MMDR</h1>
+                </div>
+                <div class="nav-actions">
+                    <a href="inicio.html" class="nav-link">Inicio</a>
+                    <a href="productos.html" class="nav-link">Productos</a>
+                    <a href="Index.html" class="nav-link">Mi Cuenta</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            <div class="page-header">
+                <h1>Mi Carrito</h1>
+                <p>Revisa tus productos antes de proceder al pago</p>
+            </div>
+
+            <div class="cart-content">
+                <!-- Carrito Items -->
+                <div class="cart-section">
+                    <div class="cart-items" id="cart-items">
+                        <!-- Los items se cargarán dinámicamente -->
+                        <div class="loading-spinner">
+                            <i class="fas fa-spinner fa-spin"></i>
+                            <p>Cargando carrito...</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Resumen del Pedido -->
+                <div class="order-summary">
+                    <h3>Resumen del Pedido</h3>
+                    <div class="summary-details">
+                        <div class="summary-row">
+                            <span>Subtotal:</span>
+                            <span id="subtotal">$0</span>
+                        </div>
+                        <div class="summary-row">
+                            <span>Envío:</span>
+                            <span id="shipping">Gratis</span>
+                        </div>
+                        <div class="summary-row total">
+                            <span>Total:</span>
+                            <span id="total">$0</span>
+                        </div>
+                    </div>
+                    <button class="checkout-btn" id="checkout-btn" disabled>
+                        <i class="fas fa-credit-card"></i>
+                        Proceder al Pago
+                    </button>
+                    <div class="security-info">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Compra 100% segura con MercadoPago</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Productos Recomendados -->
+            <div class="recommended-section">
+                <h2>Productos Recomendados</h2>
+                <div class="recommended-products" id="recommended-products">
+                    <!-- Los productos se cargarán dinámicamente -->
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h3>MMDR</h3>
+                    <p>Tu tienda de confianza para accesorios automotrices</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Contacto</h4>
+                    <p><i class="fas fa-envelope"></i> info@mmdr.com</p>
+                    <p><i class="fas fa-phone"></i> +54 9 11 1234-5678</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 MMDR. Todos los derechos reservados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.socket.io/4.7.2/socket.io.min.js"></script>
+    <script src="cart-scripts.js"></script>
+</body>
+</html>

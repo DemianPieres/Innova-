@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Producto - MMDR</title>
+    <link rel="stylesheet" href="producto-detalle.css">
+    <link rel="stylesheet" href="carrito-styles.css">
+    <link rel="stylesheet" href="favoritos-styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <nav class="main-nav">
+            <div class="nav-content">
+                <div class="logo">
+                    <a href="inicio.html"><h1>MMDR</h1></a>
+                </div>
+                <div class="nav-links">
+                    <a href="inicio.html">Inicio</a>
+                    <a href="productos.html" class="active">Productos</a>
+                    <a href="#">Contacto</a>
+                    <a href="Index.html">Iniciar Sesión</a>
+                </div>
+                <div class="nav-actions">
+                    <div class="favoritos-wrapper" id="favoritos-icon">
+                        <i class="fas fa-heart"></i>
+                        <span class="favoritos-badge" style="display: none;">0</span>
+                    </div>
+                    <div class="carrito-wrapper" id="carrito-icon">
+                        <i class="fas fa-shopping-cart"></i>
+                        <span class="cart-badge" style="display: none;">0</span>
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="product-detail-main">
+        <div class="container">
+            <div id="product-loading" class="product-loading">
+                <div class="loading-spinner"></div>
+                <p>Cargando producto...</p>
+            </div>
+
+            <div id="product-error" class="product-error" style="display: none;">
+                <h2>Producto no encontrado</h2>
+                <p>El producto que buscás no existe o fue eliminado.</p>
+                <a href="productos.html" class="btn-back">Volver a Productos</a>
+            </div>
+
+            <div id="product-content" class="product-detail-layout" style="display: none;">
+                <!-- Columna izquierda: Galería de imágenes -->
+                <div class="product-gallery">
+                    <div class="gallery-thumbnails" id="gallery-thumbnails"></div>
+                    <div class="gallery-main">
+                        <img id="product-main-image" src="" alt="">
+                    </div>
+                </div>
+
+                <!-- Columna derecha: Información y acciones -->
+                <div class="product-info-panel">
+                    <div class="product-badges">
+                        <span id="product-badge" class="badge badge-new" style="display: none;">Nuevo</span>
+                        <button class="btn-favorite-detail" id="btn-favorite" title="Agregar a favoritos">
+                            <i class="fas fa-heart"></i>
+                        </button>
+                    </div>
+
+                    <h1 class="product-title" id="product-title"></h1>
+
+                    <div class="product-price-section">
+                        <span class="product-price" id="product-price"></span>
+                        <span class="product-cuotas" id="product-cuotas"></span>
+                        <p class="product-tax-note" id="product-tax-note"></p>
+                        <a href="#" class="link-payment">Ver los medios de pago</a>
+                    </div>
+
+                    <div class="product-shipping">
+                        <i class="fas fa-truck"></i>
+                        <span id="product-shipping">Llega gratis entre 3 y 7 días hábiles</span>
+                        <a href="#" class="link-detail">Más detalles y formas de entrega</a>
+                    </div>
+
+                    <div class="product-return">
+                        <i class="fas fa-undo"></i>
+                        <span>Devolución gratis. Tenés 30 días desde que lo recibís.</span>
+                    </div>
+
+                    <div class="product-stock-section">
+                        <span class="stock-label" id="stock-label">Stock disponible</span>
+                        <div class="quantity-selector">
+                            <label>Cantidad:</label>
+                            <select id="product-quantity">
+                                <option value="1">1 unidad</option>
+                            </select>
+                            <span class="stock-available" id="stock-available"></span>
+                        </div>
+                    </div>
+
+                    <div class="product-actions">
+                        <button class="btn-buy-now" id="btn-buy-now">Comprar ahora</button>
+                        <button class="btn-add-cart" id="btn-add-cart">
+                            <i class="fas fa-shopping-cart"></i>
+                            Agregar al carrito
+                        </button>
+                    </div>
+
+                    <p class="product-seller">Vendido por <strong>MMDR</strong></p>
+
+                    <div class="product-protection">
+                        <i class="fas fa-shield-alt"></i>
+                        <span>Compra Protegida. Recibí el producto que esperabas o te devolvemos tu dinero.</span>
+                    </div>
+
+                    <a href="#" class="link-add-list"><i class="fas fa-plus"></i> Agregar a una lista</a>
+                </div>
+            </div>
+
+            <!-- Descripción del producto -->
+            <section id="product-description-section" class="product-description-section" style="display: none;">
+                <h2>Descripción</h2>
+                <p id="product-description-text"></p>
+            </section>
+
+            <!-- Productos relacionados -->
+            <section class="related-products-section">
+                <h2>Productos relacionados</h2>
+                <div class="related-products-grid" id="related-products"></div>
+            </section>
+
+            <!-- Reseñas y calificaciones -->
+            <section class="reviews-section">
+                <h2><i class="fas fa-star"></i> Reseñas y calificaciones</h2>
+                <div class="reviews-summary" id="reviews-summary">
+                    <div class="reviews-stats">
+                        <span class="reviews-avg" id="reviews-avg">0</span>
+                        <div class="reviews-stars" id="reviews-stars"></div>
+                        <span class="reviews-count" id="reviews-count">0 reseñas</span>
+                    </div>
+                    <button class="btn-write-review" id="btn-write-review">
+                        <i class="fas fa-pen"></i> Escribir reseña
+                    </button>
+                </div>
+
+                <!-- Formulario publicar reseña -->
+                <div id="review-form-container" class="review-form-container" style="display: none;">
+                    <h3>Publicar tu reseña</h3>
+                    <form id="review-form">
+                        <div class="form-group">
+                            <label>Tu nombre *</label>
+                            <input type="text" id="review-user-name" required>
+                        </div>
+                        <div class="form-group">
+                            <label>Tu email</label>
+                            <input type="email" id="review-user-email">
+                        </div>
+                        <div class="form-group">
+                            <label>Calificación *</label>
+                            <div class="rating-select" id="rating-select">
+                                <span data-rating="1"><i class="far fa-star"></i></span>
+                                <span data-rating="2"><i class="far fa-star"></i></span>
+                                <span data-rating="3"><i class="far fa-star"></i></span>
+                                <span data-rating="4"><i class="far fa-star"></i></span>
+                                <span data-rating="5"><i class="far fa-star"></i></span>
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            <label>Comentario</label>
+                            <textarea id="review-comment" rows="4" maxlength="500"></textarea>
+                            <span class="char-count"><span id="review-char-count">0</span>/500</span>
+                        </div>
+                        <button type="submit" class="btn-submit-review">Publicar reseña</button>
+                        <button type="button" class="btn-cancel-review" id="btn-cancel-review">Cancelar</button>
+                    </form>
+                </div>
+
+                <div class="reviews-list" id="reviews-list"></div>
+            </section>
+        </div>
+    </main>
+
+    <!-- MINI CARRITO -->
+    <div id="mini-carrito" class="mini-carrito">
+        <div class="mini-carrito-header">
+            <h3>Tu Carrito</h3>
+            <button class="mini-carrito-cerrar" onclick="cerrarMiniCarrito()">✕</button>
+        </div>
+        <div class="mini-carrito-body">
+            <div class="mini-carrito-items"><p class="carrito-vacio">Tu carrito está vacío</p></div>
+        </div>
+        <div class="mini-carrito-footer">
+            <div class="mini-carrito-subtotal-container">
+                <span>Subtotal:</span>
+                <span class="mini-carrito-subtotal">$0</span>
+            </div>
+            <button class="btn-ver-carrito-completo" onclick="window.location.href='card.html'">Ver Carrito Completo</button>
+            <button class="btn-continuar-comprando" onclick="window.location.href='productos.html'">Continuar Comprando</button>
+        </div>
+    </div>
+
+    <script src="carrito-logica.js"></script>
+    <script src="favoritos-logica.js"></script>
+    <script src="producto-detalle.js"></script>
+</body>
+</html>

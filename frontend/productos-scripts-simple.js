@@ -137,14 +137,14 @@ function crearTarjetaProducto(producto) {
     // Verificar si está en favoritos (se actualizará después de renderizar)
     const estaEnFavoritos = typeof favoritos !== 'undefined' && favoritos && favoritos.existeProducto(productId);
     
-    // Construir HTML
+    // Construir HTML - click en imagen/título abre detalle
     card.innerHTML = `
-        <div class="product-image">
+        <div class="product-image" onclick="window.location.href='producto-detalle.html?id=${productId}'" style="cursor: pointer;">
             <img src="${imagen}" 
                  alt="${nombre}"
                  onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22250%22%3E%3Crect fill=%22%23f0f0f0%22 width=%22280%22 height=%22250%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%23999%22 font-size=%2218%22%3ESin imagen%3C/text%3E%3C/svg%3E'">
             ${tieneDescuento ? `<div class="product-badge sale">-${porcentajeDescuento}%</div>` : ''}
-            <div class="product-actions">
+            <div class="product-actions" onclick="event.stopPropagation()">
                 <i class="fas fa-heart ${estaEnFavoritos ? 'active' : ''}" 
                    data-product-id="${productId}" 
                    style="${estaEnFavoritos ? 'color: #e74c3c;' : ''}"
@@ -152,12 +152,12 @@ function crearTarjetaProducto(producto) {
             </div>
         </div>
         <div class="product-info">
-            <h3 class="product-title">${nombre}</h3>
+            <h3 class="product-title" onclick="window.location.href='producto-detalle.html?id=${productId}'" style="cursor: pointer;">${nombre}</h3>
             <div class="product-price">
                 <span class="current-price">$${formatearPrecio(precio)}</span>
                 ${precioOriginal ? `<span class="original-price">$${formatearPrecio(precioOriginal)}</span>` : ''}
             </div>
-            <div class="product-actions-bottom">
+            <div class="product-actions-bottom" onclick="event.stopPropagation()">
                 <button class="add-to-cart-btn" onclick="agregarProductoAlCarritoDesdeCard('${productId}', '${nombreEscapado}', ${precio}, '${imagenEscapada}')">
                     Agregar al Carrito
                 </button>

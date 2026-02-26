@@ -7,6 +7,7 @@
     <link rel="stylesheet" href="inicio-styles.css">
     <link rel="stylesheet" href="carrito-styles.css">
     <link rel="stylesheet" href="favoritos-styles.css">
+    <link rel="stylesheet" href="chatbot.css">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
 </head>
 <body>
@@ -479,10 +480,89 @@
         </div>
     </div>
 
+    <!-- Chatbot MilO IA -->
+    <div class="chatbot-fab-wrapper">
+        <span class="chatbot-fab-tooltip">¿Tenés alguna duda?</span>
+        <button class="chatbot-fab" id="chatbot-fab" aria-label="Abrir chat">
+            <i class="fas fa-comments"></i>
+        </button>
+    </div>
+
+    <div class="chatbot-overlay" id="chatbot-overlay"></div>
+
+    <div class="chatbot-modal" id="chatbot-modal">
+        <!-- Header (común para menú y chat) -->
+        <header class="chatbot-header">
+            <div class="chatbot-header-left">
+                <div class="chatbot-avatar">🤖</div>
+                <div class="chatbot-header-brand">
+                    <span class="chatbot-title">Chateá con MilO IA</span>
+                    <div class="chatbot-header-avatars">
+                        <span class="chatbot-header-avatar"></span>
+                        <span class="chatbot-header-avatar"></span>
+                        <span class="chatbot-header-avatar accent"></span>
+                    </div>
+                </div>
+            </div>
+            <button class="chatbot-close" id="chatbot-close" aria-label="Cerrar chat">✕</button>
+        </header>
+
+        <div class="chatbot-body">
+            <!-- MENÚ INICIAL (interfaz diferente al chat, estilo imagen) -->
+            <div class="chatbot-home" id="chatbot-home">
+                <div class="chatbot-menu-greeting">
+                    <h2 class="chatbot-greeting-hola" id="chatbot-greeting-hola">Hola 👋</h2>
+                    <p class="chatbot-greeting-question">¿Cómo podemos ayudarte?</p>
+                </div>
+
+                <div class="chatbot-menu-cards">
+                    <div class="chatbot-menu-card chatbot-recent-card" id="chatbot-recent-card">
+                        <div class="chatbot-recent-title">Mensaje reciente</div>
+                        <div id="chatbot-recent-content" class="chatbot-recent-inner">
+                            <div class="chatbot-recent-avatars">
+                                <span class="chatbot-recent-av"></span>
+                                <span class="chatbot-recent-av"></span>
+                                <span class="chatbot-recent-av accent"></span>
+                            </div>
+                            <div class="chatbot-recent-info">
+                                <span class="chatbot-recent-name">Chateá con MilO IA</span>
+                                <span class="chatbot-recent-summary" id="chatbot-recent-summary">No hay mensajes recientes</span>
+                            </div>
+                            <span class="chatbot-recent-time" id="chatbot-recent-time"></span>
+                        </div>
+                    </div>
+
+                    <button class="chatbot-menu-card chatbot-send-message-btn" id="chatbot-send-message-btn">
+                        <span>Envíanos un mensaje</span>
+                        <i class="fas fa-arrow-right"></i>
+                    </button>
+
+                    <div class="chatbot-menu-card chatbot-welcome-card">
+                        <h3>Te damos la bienvenida a la nueva plataforma 🚀</h3>
+                        <p>Explorá nuestro catálogo de repuestos automotrices y encontrá todo lo que necesitás para tu vehículo.</p>
+                    </div>
+                </div>
+
+                <nav class="chatbot-menu-nav">
+                    <a href="#" class="chatbot-nav-item"><i class="fas fa-home"></i><span>Inicio</span></a>
+                    <a href="#" class="chatbot-nav-item"><i class="fas fa-comments"></i><span>Mensajes</span></a>
+                    <a href="#" class="chatbot-nav-item"><i class="fas fa-question-circle"></i><span>Ayuda</span></a>
+                </nav>
+            </div>
+
+            <!-- ÁREA DE CHAT (conversación con globos) -->
+            <div class="chatbot-conversation" id="chatbot-conversation">
+                <div class="chatbot-messages" id="chatbot-messages"></div>
+                <div class="chatbot-options" id="chatbot-options-container"></div>
+            </div>
+        </div>
+    </div>
+
     <!-- Scripts del Carrito y Favoritos -->
     <script src="carrito-logica.js"></script>
     <script src="favoritos-logica.js"></script>
     <script src="scripts.js"></script>
+    <script src="chatbot.js"></script>
 </body>
 </html>
 
